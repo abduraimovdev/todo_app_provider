@@ -27,6 +27,7 @@ mixin _$Todo {
   String get description => throw _privateConstructorUsedError;
   String get id => throw _privateConstructorUsedError;
   String get userId => throw _privateConstructorUsedError;
+  String get sync => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -45,7 +46,8 @@ abstract class $TodoCopyWith<$Res> {
       String title,
       String description,
       String id,
-      String userId});
+      String userId,
+      String sync});
 }
 
 /// @nodoc
@@ -68,6 +70,7 @@ class _$TodoCopyWithImpl<$Res, $Val extends Todo>
     Object? description = null,
     Object? id = null,
     Object? userId = null,
+    Object? sync = null,
   }) {
     return _then(_value.copyWith(
       createdAt: null == createdAt
@@ -98,6 +101,10 @@ class _$TodoCopyWithImpl<$Res, $Val extends Todo>
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
               as String,
+      sync: null == sync
+          ? _value.sync
+          : sync // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
@@ -115,7 +122,8 @@ abstract class _$$_TodoCopyWith<$Res> implements $TodoCopyWith<$Res> {
       String title,
       String description,
       String id,
-      String userId});
+      String userId,
+      String sync});
 }
 
 /// @nodoc
@@ -134,6 +142,7 @@ class __$$_TodoCopyWithImpl<$Res> extends _$TodoCopyWithImpl<$Res, _$_Todo>
     Object? description = null,
     Object? id = null,
     Object? userId = null,
+    Object? sync = null,
   }) {
     return _then(_$_Todo(
       createdAt: null == createdAt
@@ -164,6 +173,10 @@ class __$$_TodoCopyWithImpl<$Res> extends _$TodoCopyWithImpl<$Res, _$_Todo>
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
               as String,
+      sync: null == sync
+          ? _value.sync
+          : sync // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -178,7 +191,8 @@ class _$_Todo implements _Todo {
       required this.title,
       required this.description,
       required this.id,
-      required this.userId});
+      required this.userId,
+      required this.sync});
 
   factory _$_Todo.fromJson(Map<String, dynamic> json) => _$$_TodoFromJson(json);
 
@@ -196,10 +210,12 @@ class _$_Todo implements _Todo {
   final String id;
   @override
   final String userId;
+  @override
+  final String sync;
 
   @override
   String toString() {
-    return 'Todo(createdAt: $createdAt, updatedAt: $updatedAt, isComplete: $isComplete, title: $title, description: $description, id: $id, userId: $userId)';
+    return 'Todo(createdAt: $createdAt, updatedAt: $updatedAt, isComplete: $isComplete, title: $title, description: $description, id: $id, userId: $userId, sync: $sync)';
   }
 
   @override
@@ -217,13 +233,14 @@ class _$_Todo implements _Todo {
             (identical(other.description, description) ||
                 other.description == description) &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.userId, userId) || other.userId == userId));
+            (identical(other.userId, userId) || other.userId == userId) &&
+            (identical(other.sync, sync) || other.sync == sync));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, createdAt, updatedAt, isComplete,
-      title, description, id, userId);
+      title, description, id, userId, sync);
 
   @JsonKey(ignore: true)
   @override
@@ -247,7 +264,8 @@ abstract class _Todo implements Todo {
       required final String title,
       required final String description,
       required final String id,
-      required final String userId}) = _$_Todo;
+      required final String userId,
+      required final String sync}) = _$_Todo;
 
   factory _Todo.fromJson(Map<String, dynamic> json) = _$_Todo.fromJson;
 
@@ -265,6 +283,8 @@ abstract class _Todo implements Todo {
   String get id;
   @override
   String get userId;
+  @override
+  String get sync;
   @override
   @JsonKey(ignore: true)
   _$$_TodoCopyWith<_$_Todo> get copyWith => throw _privateConstructorUsedError;

@@ -52,10 +52,7 @@ class TodoController with ChangeNotifier {
 
   /// TODO: connecting with screen
   Future<bool> createTodo() async {
-    isLoading = true;
-    notifyListeners();
-
-    Todo todo = await repository.createTodo(
+    await repository.createTodo(
       Todo(
         createdAt: DateTime.now().toString(),
         updatedAt: DateTime.now().toString(),
@@ -64,12 +61,12 @@ class TodoController with ChangeNotifier {
         description: controllerDescription.text,
         id: "00",
         userId: '1',
+        sync: "",
       ),
     );
-    todos.add(todo);
 
-    isLoading = false;
-    notifyListeners();
+    fetchTodos();
+
     return true;
   }
 
@@ -117,6 +114,7 @@ class TodoController with ChangeNotifier {
           description: controllerDescription.text,
           id: todo.id,
           userId: '1',
+          sync: "",
         ));
     todos.removeWhere((element) => element.id == id);
     todos.add(todo);

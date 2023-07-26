@@ -12,6 +12,7 @@ class Todo with _$Todo {
     required String description,
     required String id,
     required String userId,
+    required String sync,
   }) = _Todo;
 
   factory Todo.fromJson(Map<String, Object?> json) => _$TodoFromJson(json);

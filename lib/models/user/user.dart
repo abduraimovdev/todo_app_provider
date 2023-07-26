@@ -12,6 +12,7 @@ class User with _$User {
     required String avatar,
     required String password,
     required List<Todo>? todos,
+    required String sync,
   }) = _User;
 
   factory User.fromJson(Map<String, Object?> json) => _$UserFromJson(json);

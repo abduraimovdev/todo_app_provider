@@ -1,5 +1,6 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get_it/get_it.dart';
 import 'package:todo_app_provider/controllers/auth_controller.dart';
 import 'package:todo_app_provider/controllers/connectivity_controller.dart';
@@ -22,9 +23,8 @@ void setupLocator() {
     return networkService;
   });
 
-  //Hive
-  locator.registerLazySingleton<HiveService>(() => const HiveService(title: Boxes.userInfo));
-
+  // Secure Storage
+  locator.registerSingleton<FlutterSecureStorage>(const FlutterSecureStorage());
   /// repository
   locator.registerLazySingleton<UserRepository>(() => UserRepositoryImpl(client: locator()));
 
@@ -37,7 +37,7 @@ void setupLocator() {
   /// controller
   locator.registerFactory<TodoController>(() => TodoController(repository: locator()));
 
-  // Connectivity Servidce
+  // Connectivity Service
   locator.registerFactory<ConnectivityService>(() => ConnectivityService(connectivity: Connectivity()));
 
 

@@ -14,6 +14,7 @@ _$_Todo _$$_TodoFromJson(Map<String, dynamic> json) => _$_Todo(
       description: json['description'] as String,
       id: json['id'] as String,
       userId: json['userId'] as String,
+      sync: json['sync'] as String,
     );
 
 Map<String, dynamic> _$$_TodoToJson(_$_Todo instance) => <String, dynamic>{
@@ -24,4 +25,5 @@ Map<String, dynamic> _$$_TodoToJson(_$_Todo instance) => <String, dynamic>{
       'description': instance.description,
       'id': instance.id,
       'userId': instance.userId,
+      'sync': instance.sync,
     };

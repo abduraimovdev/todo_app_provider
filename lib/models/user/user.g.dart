@@ -15,6 +15,7 @@ _$_User _$$_UserFromJson(Map<String, dynamic> json) => _$_User(
       todos: (json['todos'] as List<dynamic>?)
           ?.map((e) => Todo.fromJson(e as Map<String, dynamic>))
           .toList(),
+      sync: json['sync'] as String,
     );
 
 Map<String, dynamic> _$$_UserToJson(_$_User instance) => <String, dynamic>{
@@ -24,4 +25,5 @@ Map<String, dynamic> _$$_UserToJson(_$_User instance) => <String, dynamic>{
       'avatar': instance.avatar,
       'password': instance.password,
       'todos': instance.todos,
+      'sync': instance.sync,
     };

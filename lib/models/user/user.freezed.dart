@@ -26,6 +26,7 @@ mixin _$User {
   String get avatar => throw _privateConstructorUsedError;
   String get password => throw _privateConstructorUsedError;
   List<Todo>? get todos => throw _privateConstructorUsedError;
+  String get sync => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -43,7 +44,8 @@ abstract class $UserCopyWith<$Res> {
       String name,
       String avatar,
       String password,
-      List<Todo>? todos});
+      List<Todo>? todos,
+      String sync});
 }
 
 /// @nodoc
@@ -65,6 +67,7 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
     Object? avatar = null,
     Object? password = null,
     Object? todos = freezed,
+    Object? sync = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -91,6 +94,10 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
           ? _value.todos
           : todos // ignore: cast_nullable_to_non_nullable
               as List<Todo>?,
+      sync: null == sync
+          ? _value.sync
+          : sync // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
@@ -107,7 +114,8 @@ abstract class _$$_UserCopyWith<$Res> implements $UserCopyWith<$Res> {
       String name,
       String avatar,
       String password,
-      List<Todo>? todos});
+      List<Todo>? todos,
+      String sync});
 }
 
 /// @nodoc
@@ -125,6 +133,7 @@ class __$$_UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res, _$_User>
     Object? avatar = null,
     Object? password = null,
     Object? todos = freezed,
+    Object? sync = null,
   }) {
     return _then(_$_User(
       id: null == id
@@ -151,6 +160,10 @@ class __$$_UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res, _$_User>
           ? _value._todos
           : todos // ignore: cast_nullable_to_non_nullable
               as List<Todo>?,
+      sync: null == sync
+          ? _value.sync
+          : sync // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -164,7 +177,8 @@ class _$_User implements _User {
       required this.name,
       required this.avatar,
       required this.password,
-      required final List<Todo>? todos})
+      required final List<Todo>? todos,
+      required this.sync})
       : _todos = todos;
 
   factory _$_User.fromJson(Map<String, dynamic> json) => _$$_UserFromJson(json);
@@ -190,8 +204,11 @@ class _$_User implements _User {
   }
 
   @override
+  final String sync;
+
+  @override
   String toString() {
-    return 'User(id: $id, createdAt: $createdAt, name: $name, avatar: $avatar, password: $password, todos: $todos)';
+    return 'User(id: $id, createdAt: $createdAt, name: $name, avatar: $avatar, password: $password, todos: $todos, sync: $sync)';
   }
 
   @override
@@ -206,13 +223,14 @@ class _$_User implements _User {
             (identical(other.avatar, avatar) || other.avatar == avatar) &&
             (identical(other.password, password) ||
                 other.password == password) &&
-            const DeepCollectionEquality().equals(other._todos, _todos));
+            const DeepCollectionEquality().equals(other._todos, _todos) &&
+            (identical(other.sync, sync) || other.sync == sync));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, id, createdAt, name, avatar,
-      password, const DeepCollectionEquality().hash(_todos));
+      password, const DeepCollectionEquality().hash(_todos), sync);
 
   @JsonKey(ignore: true)
   @override
@@ -235,7 +253,8 @@ abstract class _User implements User {
       required final String name,
       required final String avatar,
       required final String password,
-      required final List<Todo>? todos}) = _$_User;
+      required final List<Todo>? todos,
+      required final String sync}) = _$_User;
 
   factory _User.fromJson(Map<String, dynamic> json) = _$_User.fromJson;
 
@@ -251,6 +270,8 @@ abstract class _User implements User {
   String get password;
   @override
   List<Todo>? get todos;
+  @override
+  String get sync;
   @override
   @JsonKey(ignore: true)
   _$$_UserCopyWith<_$_User> get copyWith => throw _privateConstructorUsedError;

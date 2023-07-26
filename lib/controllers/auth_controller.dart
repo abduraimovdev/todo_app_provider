@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:todo_app_provider/core/service_locator.dart';
 import 'package:todo_app_provider/models/user/user.dart';
 import 'package:todo_app_provider/repositories/user_repository.dart';
 import 'package:todo_app_provider/screens/home_screen.dart';
 import 'package:todo_app_provider/screens/splash_screen.dart';
-import 'package:todo_app_provider/services/hive_service.dart';
 import 'package:todo_app_provider/services/log_service.dart';
 
 class AuthController extends ChangeNotifier {
@@ -31,18 +31,21 @@ class AuthController extends ChangeNotifier {
 
   void signUp(BuildContext context) async {
     try {
-      User? user = await repository.authUser(User(
+      User? user = await repository.authUser(
+        User(
           id: "",
           createdAt: DateTime.now().toString(),
           name: upNameController.value.text.trim(),
           avatar: "",
           password: upPasswordController.value.text.trim(),
-          todos: []));
-
-      userId = user!.id;
+          todos: [],
+          sync: '',
+        ),
+      );
+      userId = user?.id;
       await locator
-          .get<HiveService>()
-          .save<String?>("userId", user.id, title: Boxes.userInfo);
+          .get<FlutterSecureStorage>()
+          .write(key: "userId", value: user?.id);
 
       if (context.mounted) {
         Navigator.pushReplacement(
@@ -62,8 +65,10 @@ class AuthController extends ChangeNotifier {
         inNameController.value.text.trim(),
         inPasswordController.value.text.trim(),
       );
-      userId = user!.id;
-      await locator.get<HiveService>().save<String?>("userId", user.id);
+      userId = user?.id;
+      await locator
+          .get<FlutterSecureStorage>()
+          .write(key: "userId", value: user?.id);
       if (context.mounted) {
         Navigator.pushReplacement(
             context,
@@ -77,7 +82,8 @@ class AuthController extends ChangeNotifier {
   }
 
   void logOut(BuildContext context) async {
-    await locator.get<HiveService>().save("userId", null);
+    userId = null;
+    await locator.get<FlutterSecureStorage>().write(key: "userId", value: null);
     Navigator.pushReplacement(
         context,
         MaterialPageRoute(
